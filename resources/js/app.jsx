@@ -1,10 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Hero from './components/Hero';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import Login from "./components/Auth/Login";
+import DashboardPage from "./pages/DashboardPage";
 
-function App() {
-    return <Hero />
-}
+const App = () => {
+    return (
+        <AuthProvider>
+            <Router>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/dashboard" element={<DashboardPage />} />
+                </Routes>
+            </Router>
+        </AuthProvider>
+    );
+};
 
-const root = ReactDOM.createRoot(document.getElementById('app'));
-root.render(<App />);
+export default App;
+

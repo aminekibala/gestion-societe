@@ -10,15 +10,19 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('position');
-            $table->decimal('salary', 8, 2);
+            $table->unsignedBigInteger('user_id');
+            $table->decimal('amount', 10, 2);
+            $table->decimal('bonus', 10, 2)->default(0);
+            $table->decimal('deduction', 10, 2)->default(0);
+            $table->date('pay_date');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
     public function down()
     {
         Schema::dropIfExists('employees');
-    }
+}
 }
