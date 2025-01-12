@@ -29,10 +29,13 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'password' => bcrypt('password'), // Vous pouvez utiliser Hash::make('password')
+            'role' => $this->faker->randomElement(['admin', 'employee']),
+            'position' => $this->faker->jobTitle(),
+            'salary' => $this->faker->randomFloat(2, 3000, 8000),
+            'hire_date' => $this->faker->date(),
         ];
+        
     }
 
     /**

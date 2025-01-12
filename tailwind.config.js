@@ -3,11 +3,11 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
         './resources/**/*.blade.php',
         './resources/**/*.js',
-        './resources/**/*.vue',
+        './resources/**/*.jsx', // Si vous utilisez React
+        './resources/**/*.vue', // Si vous utilisez Vue
+        './resources/**/*.php',
     ],
     theme: {
         extend: {
@@ -16,5 +16,9 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/forms'), // Pour styliser les formulaires
+        require('@tailwindcss/typography'), // Pour les contenus riches (textes, articles)
+        require('@tailwindcss/aspect-ratio'), // Pour gérer les ratios d'aspect
+    ],
 };
